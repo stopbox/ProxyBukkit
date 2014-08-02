@@ -1,11 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<groupId>me.stopbox123.ProxyBukkiy</groupId>
+<groupId>me.stopbox123.ProxyBukkit</groupId>
 <artifactId>ProxyBukkit</artifactId>
 <version>1.0.0</version>
 <packaging>jar</packaging>
 <name>ProxyBukkit</name>
+
+ <properties>
+        <build.number>unknown</build.number>
+        <netty.version>4.0.20.Final</netty.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
  <build>
  <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 <pluginManagement>
@@ -19,11 +26,6 @@
 <target>1.7</target>
 <encoding>UTF-8</encoding>
 </configuration>
- <properties>
-        <build.number>unknown</build.number>
-        <netty.version>4.0.20.Final</netty.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 </plugin>
 </plugins>
 </pluginManagement>
