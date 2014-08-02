@@ -6,9 +6,11 @@
     <name>ProxyBukkit</name>
 
     <dependencies>
+	 <dependency>
 	    <groupId>io.netty</groupId>
     <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
     <version>4.0.22.Final</version>
+	 </dependency>
 	    <dependency>
       <groupId>jline</groupId>
       <artifactId>jline</artifactId>
@@ -77,7 +79,6 @@
                     <show>public</show>
                     <use>false</use>
                 </configuration>
-            </plugin>
             </plugin>
         </plugins>
         <resources>
