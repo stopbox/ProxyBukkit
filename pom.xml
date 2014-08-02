@@ -19,6 +19,11 @@
 <target>1.7</target>
 <encoding>UTF-8</encoding>
 </configuration>
+ <properties>
+        <build.number>unknown</build.number>
+        <netty.version>4.0.20.Final</netty.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 </plugin>
 </plugins>
 </pluginManagement>
