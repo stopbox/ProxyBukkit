@@ -4,7 +4,7 @@
     <artifactId>ProxyBukkit</artifactId>
     <version>1.8-SNAPSHOT</version>
     <name>ProxyBukkit</name>
-
+	
     <dependencies>
 	    <dependency>
       <groupId>jline</groupId>
@@ -16,7 +16,7 @@
 	  <dependency>
     <groupId>io.netty</groupId>
     <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
-    <version>4.0.22.Final</version>
+    <version>4.0.20.Final</version>
 	</dependency>
 	    <dependency>
       <groupId>jline</groupId>
