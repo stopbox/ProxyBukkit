@@ -73,13 +73,6 @@
                         <artifactId>lombok-maven-plugin</artifactId>
                         <version>1.12.6.0</version>
                         <dependencies>
-                            <dependency>
-                                <groupId>sun.jdk</groupId>
-                                <artifactId>tools</artifactId>
-                                <version>${java.version}</version>
-                                <scope>system</scope>
-                                <systemPath>${java.home}/../lib/tools.jar</systemPath>
-                            </dependency>
 							<dependency>
       <groupId>org.fusesource.jansi</groupId>
       <artifactId>jansi</artifactId>
