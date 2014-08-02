@@ -19,10 +19,6 @@
         </developer>
     </developers>
 
-    <modules>
-    </modules>
-
-	<finalName>ProxyBukkit-v0.0.1</finalName>
 	<resources>
 	<resource>
 	<directory>${project.basedir}/src/main/resources</directory>
