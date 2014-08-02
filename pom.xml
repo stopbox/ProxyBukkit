@@ -73,13 +73,13 @@
                         <artifactId>lombok-maven-plugin</artifactId>
                         <version>1.12.6.0</version>
                         <dependencies>
-							<dependency>
-      <groupId>org.fusesource.jansi</groupId>
-      <artifactId>jansi</artifactId>
-      <version>1.8</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
+						<dependency>
+						<groupId>org.fusesource.jansi</groupId>
+						<artifactId>jansi</artifactId>
+						<version>1.8</version> 
+						<type>jar</type>
+						<scope>compile</scope>
+						</dependency>
 	  <dependency>
     <groupId>io.netty</groupId>
     <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
