@@ -1,85 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<groupId>me.stopbox123.ProxyBukkit</groupId>
-<artifactId>ProxyBukkit</artifactId>
-<version>1.0.0</version>
-<packaging>jar</packaging>
-<name>ProxyBukkit</name>
+    <groupId>me.stopbox</groupId>
+    <artifactId>ProxyBukkit</artifactId>
+    <version>1.8-SNAPSHOT</version>
+    <name>ProxyBukkit</name>
 
- <properties>
-        <build.number>unknown</build.number>
-        <netty.version>4.0.20.Final</netty.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
- <build>
- <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-<pluginManagement>
-<plugins>
-<plugin>
-<groupId>org.apache.maven.plugins</groupId>
-<artifactId>maven-compiler-plugin</artifactId>
-<version>3.1</version>
-<configuration>
-<source>1.7</source>
-<target>1.7</target>
-</configuration>
-</plugin>
-</plugins>
-</pluginManagement>
-<finalName>MusicAPI</finalName>
-<resources>
-<resource>
-<directory>${project.basedir}/src/main/resources</directory>
-<includes>
-<include>*</include>
-</includes>
-</resource>
-</resources>
-        <plugins>
-            <plugin>
-                <groupId>com.lukegb.mojo</groupId>
-                <artifactId>gitdescribe-maven-plugin</artifactId>
-                <version>1.3</version> <!-- There is 2.0, but it seems broken -->
-                <configuration>
-                    <outputPrefix>git:${project.name}:${project.version}:</outputPrefix>
-                    <outputPostfix>:${build.number}</outputPostfix>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>gitdescribe</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <profiles>
-        <profile>
-            <id>lombok-needs-tools-jar</id>
-            <activation>
-                <file>
-                    <exists>${java.home}/../lib/tools.jar</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.projectlombok</groupId>
-                        <artifactId>lombok-maven-plugin</artifactId>
-                        <version>1.12.6.0</version>
-                        <dependencies>
-						<dependency>
-						<groupId>org.fusesource.jansi</groupId>
-						<artifactId>jansi</artifactId>
-						<version>1.8</version> 
-						<type>jar</type>
-						<scope>compile</scope>
-						</dependency>
+    <dependencies>
+	    <groupId>io.netty</groupId>
+    <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
+    <version>4.0.22.Final</version>
+	    <dependency>
+      <groupId>jline</groupId>
+      <artifactId>jline</artifactId>
+      <version>2.6</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <scope>compile</scope>
 	  <dependency>
     <groupId>io.netty</groupId>
     <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
@@ -93,10 +30,85 @@
     </dependency>
     <scope>compile</scope>
   </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+    </dependencies>
+
+    <distributionManagement>
+    </distributionManagement>
+
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <directory>${basedir}/target</directory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.7.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <show>public</show>
+                    <use>false</use>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>jrebel-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-rebel-xml</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>${basedir}/src/main/resources/</directory>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+        </resources>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>1.0-alpha-6</version>
+            </extension>
+        </extensions>
+    </build>
 </project>
