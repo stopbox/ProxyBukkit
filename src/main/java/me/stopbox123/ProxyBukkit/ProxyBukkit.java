@@ -17,6 +17,7 @@ import org.fusesource.jansi.AnsiConsole;
 
 import com.google.common.io.ByteStreams;
 
+import jline.UnsupportedTerminal;
 import jline.console.ConsoleReader;
 import jline.internal.Log;
 
@@ -44,10 +45,10 @@ public class ProxyBukkit extends ProxyServer {
 	public void start() throws IOException {
 		proxy = this;
 	    try {
-	      this.bundle = ResourceBundle.getBundle("messages");
+	//      this.bundle = ResourceBundle.getBundle("messages");
 	    }
 	    catch (MissingResourceException ex) {
-	      this.bundle = ResourceBundle.getBundle("messages", Locale.ENGLISH);
+//	      this.bundle = ResourceBundle.getBundle("messages", Locale.ENGLISH);
 	    }
 	    
 	    Log.setOutput(new PrintStream(ByteStreams.nullOutputStream()));
@@ -57,5 +58,17 @@ public class ProxyBukkit extends ProxyServer {
 	    this.logger = new ProxyBukkitLogger(this);
 	    System.setErr(new PrintStream(new LoggingOutputStream(this.logger, Level.SEVERE), true));
 	    System.setOut(new PrintStream(new LoggingOutputStream(this.logger, Level.INFO), true));
+	    
+	    if ((consoleReader.getTerminal() instanceof UnsupportedTerminal))
+	    {
+	      this.logger.info("Unable to initialize fancy terminal. To fix this on Windows, install the correct Microsoft Visual C++ 2008 Runtime");
+	      this.logger.info("NOTE: This error is non crucial, and BungeeCord will still function correctly! Do not bug the author about it unless you are still unable to get it working");
+	    }
+	    
+	    if (NativeCipher.load()) {
+	      this.logger.info("Using OpenSSL based native cipher.");
+	    } else {
+	      this.logger.info("Using standard Java JCE cipher. To enable the OpenSSL based native cipher, please make sure you are using 64 bit Ubuntu or Debian with libssl installed.");
+	}
 	}
 }
