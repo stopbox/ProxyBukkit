@@ -39,16 +39,6 @@
 </resource>
 </resources>
 
-    <scm>
-        <connection>scm:git:git@github.com:stopbox/ProxyBukkit.git</connection>
-        <developerConnection>scm:git:git@github.com:stopbox/ProxyBukkit.git</developerConnection>
-        <url>git@github.com:stopbox/ProxyBukkit.git</url>
-    </scm>
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/stopbox/ProxyBukkit/issues</url>
-    </issueManagement>
-
     <properties>
         <build.number>unknown</build.number>
         <netty.version>4.0.20.Final</netty.version>
