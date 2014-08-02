@@ -74,6 +74,13 @@
                                 <scope>system</scope>
                                 <systemPath>${java.home}/../lib/tools.jar</systemPath>
                             </dependency>
+							<dependency>
+      <groupId>org.fusesource.jansi</groupId>
+      <artifactId>jansi</artifactId>
+      <version>1.8</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
                         </dependencies>
                     </plugin>
                 </plugins>
